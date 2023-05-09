@@ -2,12 +2,10 @@
 
 <div class="header-wrapper">
   <!--marca y registro/login-->
-  <div class="header">
-    <a class="logo"><span style="display: inline-block">BuscoBandas</span></a>
+  <header>
+    <a class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic" style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
     <a class="registro"><fa-icon [icon]="faUser"></fa-icon></a>
-  </div>
-  <!--?quizás quitar el banner-->
-  <div class="banner"><p>buscobandas.com</p></div>
+  </header>
   <nav>
     <a [routerLink]="['/']">INICIO</a>
     <a [routerLink]="['/bandas']">BANDAS</a>
@@ -19,3 +17,35 @@
 <div class="page-container">
   <router-outlet></router-outlet>
 </div>
+
+<footer>
+  <div class="breadcrumbs">
+    <c-breadcrumb-router></c-breadcrumb-router>
+    <div class="social-icons">
+      <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+      >
+        <fa-icon [icon]="faFacebook"></fa-icon>
+      </a>
+      <a
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+      >
+        <fa-icon [icon]="faInstagram"></fa-icon>
+      </a>
+      <a
+        href="https://www.youtube.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+      >
+        <fa-icon [icon]="faYoutube"></fa-icon>
+      </a>
+    </div>
+  </div>
+</footer>

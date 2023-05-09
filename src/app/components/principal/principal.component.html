@@ -1,1 +1,72 @@
-<p>principal works!</p>
+<div class="principal">
+  <!--carrusel de imágenes. Los imágenes son en /assets/img/..-->
+  <!--para cambiar, puede hacer ruido en los banners con los mismos nombres o ajustar las cosas en principal.component.ts.-->
+  <div class="carrusel-imágenes">
+    <c-carousel [dark]="false" [wrap]="false">
+      <c-carousel-indicators></c-carousel-indicators>
+      <c-carousel-inner>
+        <c-carousel-item *ngFor="let slide of slides; index as i">
+          <img
+            [src]="slide.src"
+            alt="{{ slide.title }}"
+            class="d-block w-100"
+            loading="lazy"
+          />
+          <c-carousel-caption class="d-none d-md-block">
+            <h1>{{ slide.title }}</h1>
+          </c-carousel-caption>
+        </c-carousel-item>
+      </c-carousel-inner>
+      <c-carousel-control
+        [routerLink]
+        caption="Previous"
+        direction="prev"
+      ></c-carousel-control>
+      <c-carousel-control
+        [routerLink]
+        caption="Next"
+        direction="next"
+      ></c-carousel-control>
+    </c-carousel>
+  </div>
+  <div class="circular-images-row">
+    <div *ngFor="let item of circularImages" class="circular-image-container">
+      <div
+        [style.background-image]="'url(' + item.image + ')'"
+        class="circular-image"
+      ></div>
+      <div class="image-text">
+        <strong>{{ item.text }}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <div class="upcoming-performances grid-item">
+        <h1>Upcoming Performances</h1>
+        <ul>
+          <li *ngFor="let performance of upcomingPerformances">
+            <h2>{{ performance.title }}</h2>
+            <p>Band: {{ performance.band }}</p>
+            <p>Date: {{ performance.date }}</p>
+            <p>Location: {{ performance.location }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="filler-text grid-item">
+        <h1>Lorem, ipsum dolor.</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum fugiat
+          inventore explicabo.
+        </p>
+      </div>
+      <div class="subscribe grid-item">
+        <h1>Subscribe to our newsletter</h1>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Your email" class="email-input" />
+          <button type="submit" class="subscribe-button">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

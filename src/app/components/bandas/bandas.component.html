@@ -1,18 +1,63 @@
-<div class="page">
-  <div class="search">
-    <label for="estilo">estilo</label>
-    <input list="lista-de-estilo" type="text" id="estilo" name="estilo" />
-    <!--para evitar problemas con el motor de búsqueda-->
-    <!--!¡descomentar y rellenar los valores para utilizarlo!-->
-    <!--
-    <datalist id="lista-de-estilo">
-      <option value=""></option>
-      <option value=""></option>
-    </datalist>
-    -->
-    <label for="estilo">estilo</label>
-    <input list="lista-de-estilo" type="text" id="estilo" name="estilo" />
-    <label for="estilo">estilo</label>
-    <input list="lista-de-estilo" type="text" id="estilo" name="estilo" />
-  </div>
+<div class="bandas">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search">
+    <!--Estilo-->
+    <div class="estilos" formArrayName="styles">
+      <mat-checkbox formControlName="0"
+        >Banda de cornetas y tambores</mat-checkbox
+      >
+      <mat-checkbox formControlName="1">Agrupación musical</mat-checkbox>
+      <mat-checkbox formControlName="2">Banda de música</mat-checkbox>
+      <mat-checkbox formControlName="3">Otros</mat-checkbox>
+    </div>
+    <!--lista de provincias de españa-->
+    <div class="lista-de-provincia">
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select
+          formControlName="province"
+          placeholder="Escriba o seleccione una provincia"
+        >
+          <mat-option *ngFor="let province of provinces" [value]="province">{{
+            province
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="componentes">
+      <mat-form-field appearance="fill">
+        <mat-label>Número de componentes</mat-label>
+        <mat-select
+          formControlName="components"
+          placeholder="Seleccione una opción"
+        >
+          <mat-option *ngFor="let num of numComponentes" [value]="num">{{
+            num
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="actuación">
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de la actuación</mat-label>
+        <input
+          matInput
+          [matDatepicker]="actuacionFecha"
+          formControlName="actuationDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="actuacionFecha"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #actuacionFecha></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="submit-button"
+    >
+      Enviar
+    </button>
+  </form>
 </div>

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,10 @@ export class AppComponent {
         }
       });
   }
-  // icono de registro/login
-  faUser = faUser
+  // iconos
+  faUser = faUser;
+  faMusic = faMusic;
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faYoutube = faYoutube;
 }
