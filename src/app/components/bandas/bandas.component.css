@@ -1,0 +1,43 @@
+.bandas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search {
+    width: 50%;
+    display: grid;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+}
+
+.estilos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.lista-de-provincia,
+.componentes,
+.actuación {
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.submit-button {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+::ng-deep .mat-select-panel {
+    position: absolute;
+}
