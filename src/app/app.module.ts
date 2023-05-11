@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // coreui
-import { CarouselModule, BreadcrumbModule } from '@coreui/angular';
+import { CarouselModule, BreadcrumbModule, FormModule } from '@coreui/angular';
 
 // forms
 import { MatSelectModule } from '@angular/material/select';
@@ -27,6 +27,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { PerfilBandaComponent } from './perfil-banda/perfil-banda.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,12 @@ import { LoginComponent } from './login/login.component';
     BandasComponent,
     BlogComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilBandaComponent
   ],
   imports: [
     BrowserModule,
+    FormModule,
     RouterModule,
     AppRoutingModule,
     FontAwesomeModule,

@@ -3,8 +3,8 @@
 <div class="header-wrapper">
   <!--marca y registro/login-->
   <header>
-    <a class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic" style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
-    <a class="registro"><fa-icon [icon]="faUser"></fa-icon></a>
+    <a [routerLink]="['/']" class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic" style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
+    <a [routerLink]="['/login']" class="registro"><fa-icon [icon]="faUser"></fa-icon></a>
   </header>
   <nav>
     <a [routerLink]="['/']">INICIO</a>

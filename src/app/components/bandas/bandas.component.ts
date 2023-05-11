@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-bandas',
@@ -7,6 +8,42 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./bandas.component.css']
 })
 export class BandasComponent implements OnInit {
+  bandaProfil = [
+    {
+      image: './assets/img/banner1.jpg',
+      nombre: 'Band1',
+      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
+      nextPer: '12.05.2023',
+      genre: '',
+      fundada: '12.21.2421',
+      facebook: '',
+      instagram: '',
+      youtube: '',
+    },
+    {
+      image: './assets/img/banner1.jpg',
+      nombre: 'Band1',
+      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
+      nextPer: '12.05.2023',
+      genre: '',
+      fundada: '12.21.2421',
+      facebook: '',
+      instagram: '',
+      youtube: '',
+    },
+    {
+      image: './assets/img/banner1.jpg',
+      nombre: 'Band1',
+      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
+      nextPer: '12.05.2023',
+      genre: '',
+      fundada: '12.21.2421',
+      facebook: '',
+      instagram: '',
+      youtube: '',
+    },
+  ];
+
   searchForm!: FormGroup;
   provinces = [
     'Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona', 'Burgos', 'Cáceres',
@@ -15,7 +52,9 @@ export class BandasComponent implements OnInit {
     'Lugo', 'Madrid', 'Málaga', 'Murcia', 'Navarra', 'Orense', 'Palencia', 'Pontevedra', 'Salamanca', 'Santa Cruz de Tenerife',
     'Segovia', 'Sevilla', 'Soria', 'Tarragona', 'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza'
   ];
-  numComponentes = ['todas', 'más de 40', 'más de 60', 'más de 80', 'más de 100'];
+  numComponentes = ['todas', 'más de 40', 'más de 60',
+
+    'más de 80', 'más de 100'];
 
   constructor(private fb: FormBuilder) { }
 
@@ -32,6 +71,10 @@ export class BandasComponent implements OnInit {
       actuationDate: ''
     });
   }
+
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faYoutube = faYoutube;
 
   onSubmit(): void {
     console.log(this.searchForm.value);
