@@ -1,4 +1,5 @@
-<div class="perfil-banda" *ngFor="let item of bandaProfile">
+<div class="perfil-banda-page">
+  <div class="perfil-banda" *ngFor="let item of bandaProfile">
     <h1>Información</h1>
     <div class="profile-info">
       <img src="{{ item.img }}" class="profile-pic" />
@@ -20,4 +21,4 @@
       <p [innerHTML]="item.desc"></p>
     </div>
   </div>
-  
+</div>

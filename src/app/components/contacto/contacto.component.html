@@ -1,1 +1,35 @@
-<p>contacto works!</p>
+<div class="contacto">
+  <div class="contact-form-container">
+    <h1>Contact Us</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Subject</mat-label>
+        <input matInput type="text" formControlName="subject" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message"></textarea>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!contactForm.valid"
+      >
+        Send
+      </button>
+    </form>
+  </div>
+</div>

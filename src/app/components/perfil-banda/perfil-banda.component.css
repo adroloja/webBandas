@@ -1,12 +1,22 @@
+.perfil-banda-page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.perfil-banda {
+    margin-top: 1rem;
+    width: 80%;
+}
+
 .profile-info {
     display: flex;
-    align-items: center;
 }
 
 .profile-pic {
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 
 .band-details {
