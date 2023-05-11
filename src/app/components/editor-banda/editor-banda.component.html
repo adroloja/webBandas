@@ -1,0 +1,48 @@
+<div class="edit-banda">
+  <h1>Edit Band Information</h1>
+  <form class="edit-form" [formGroup]="bandaForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-group">
+      <label for="img-upload">Profile Image:</label>
+      <input id="img-upload" type="file" class="form-control" name="img" />
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <label for="name">Band Name:</label>
+      <input id="name" type="text" class="form-control" name="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-group">
+      <label for="province">Province:</label>
+      <input id="province" type="text" class="form-control" name="province" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Número de componentes</mat-label>
+      <mat-select
+        formControlName="components"
+        placeholder="Seleccione una opción"
+      >
+        <mat-option *ngFor="let num of numComponentes" [value]="num">{{
+          num
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de la actuación</mat-label>
+      <input
+        matInput
+        [matDatepicker]="actuacionFecha"
+        formControlName="actuationDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="actuacionFecha"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #actuacionFecha></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <label for="desc">Description:</label>
+      <textarea id="desc" class="form-control" name="desc"></textarea>
+    </mat-form-field>
+    <button type="submit" class="btn btn-primary" [disabled]="!bandaForm.valid">
+      Save Changes
+    </button>
+  </form>
+</div>
