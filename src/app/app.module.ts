@@ -10,7 +10,7 @@ import { CarouselModule, BreadcrumbModule, FormModule } from '@coreui/angular';
 
 // forms
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { MatCommonModule, MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +31,10 @@ import { PerfilBandaComponent } from './components/perfil-banda/perfil-banda.com
 import { EditorBandaComponent } from './components/editor-banda/editor-banda.component';
 import { AdminComponent } from './components/admin/admin.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,8 +51,10 @@ import { AdminComponent } from './components/admin/admin.component';
     BrowserModule,
     FormModule,
     RouterModule,
+    CommonModule,
     AppRoutingModule,
     FontAwesomeModule,
+    HttpClientModule,
     CarouselModule,
     BreadcrumbModule,
     BrowserAnimationsModule,
