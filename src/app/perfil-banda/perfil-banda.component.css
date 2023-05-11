@@ -1,0 +1,31 @@
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.band-details {
+    margin-left: 20px;
+}
+
+.multimedia {
+    margin-top: 20px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.video {
+    width: 30%;
+}
+
+.desc {
+    margin-top: 20px;
+}

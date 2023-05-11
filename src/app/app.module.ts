@@ -28,6 +28,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { PerfilBandaComponent } from './perfil-banda/perfil-banda.component';
+import { EditorBandaComponent } from './editor-banda/editor-banda.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { PerfilBandaComponent } from './perfil-banda/perfil-banda.component';
     BlogComponent,
     ContactoComponent,
     LoginComponent,
-    PerfilBandaComponent
+    PerfilBandaComponent,
+    EditorBandaComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
