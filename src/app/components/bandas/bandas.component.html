@@ -56,6 +56,7 @@
         Enviar
       </button>
     </div>
+
   </form>
   <br />
   <div class="bandas-lista">
@@ -101,5 +102,24 @@
         </div>
       </div>
     </div>
+<!--  de aqui  -->
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="submit-button"    >
+      Enviar
+    </button>
+  </form>
+  <div style="margin-top: 20px;">
+   <div class="card" style="width: 18rem;" *ngFor="let banda of this.bandas">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ banda.nombre }}</h5>
+        <p class="card-text">{{ banda.info }}</p>
+        <a href="#" class="btn btn-primary">Más info</a>
+      </div>
+    </div> 
+<!--  hasta aqui es lo antiguo aqui  -->
   </div>
 </div>
