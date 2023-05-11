@@ -10,7 +10,7 @@ import { CarouselModule, BreadcrumbModule } from '@coreui/angular';
 
 // forms
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { MatCommonModule, MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,6 +27,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,8 +42,10 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     RouterModule,
+    CommonModule,
     AppRoutingModule,
     FontAwesomeModule,
+    HttpClientModule,
     CarouselModule,
     BreadcrumbModule,
     BrowserAnimationsModule,

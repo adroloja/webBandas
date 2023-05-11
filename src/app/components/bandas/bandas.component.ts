@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { DataBandaService } from 'src/app/services/data-banda.service';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-bandas',
   templateUrl: './bandas.component.html',
-  styleUrls: ['./bandas.component.css']
+  styleUrls: ['./bandas.component.css'], 
 })
 export class BandasComponent implements OnInit {
   searchForm!: FormGroup;
@@ -17,7 +22,11 @@ export class BandasComponent implements OnInit {
   ];
   numComponentes = ['todas', 'más de 40', 'más de 60', 'más de 80', 'más de 100'];
 
-  constructor(private fb: FormBuilder) { }
+  bandas: any = [];
+
+  constructor(private fb: FormBuilder,
+              private dataService: DataBandaService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
@@ -35,5 +44,15 @@ export class BandasComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.searchForm.value);
+    this.getBandas();
+  }
+
+  getBandas(){  
+    this.dataService.getBandas().subscribe(result => {
+      console.log(result);
+      this.bandas = result;
+    }
+    );
+
   }
 }
