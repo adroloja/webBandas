@@ -8,16 +8,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditorBandaComponent {
   bandaForm!: FormGroup;
-  numComponentes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  provincias = [
+    'Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona', 'Burgos', 'Cáceres',
+    'Cádiz', 'Cantabria', 'Castellón', 'Ciudad Real', 'Córdoba', 'Cuenca', 'Gerona', 'Granada', 'Guadalajara',
+    'Guipúzcoa', 'Huelva', 'Huesca', 'Islas Baleares', 'Jaén', 'La Coruña', 'La Rioja', 'Las Palmas', 'León', 'Lérida',
+    'Lugo', 'Madrid', 'Málaga', 'Murcia', 'Navarra', 'Orense', 'Palencia', 'Pontevedra', 'Salamanca', 'Santa Cruz de Tenerife',
+    'Segovia', 'Sevilla', 'Soria', 'Tarragona', 'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza'
+  ];
+  numComponentes = ['todas', 'más de 40', 'más de 60', 'más de 80', 'más de 100'];
 
   constructor(private fb: FormBuilder) {
     this.bandaForm = this.fb.group({
-      img: [''],
       name: ['', Validators.required],
       province: ['', Validators.required],
       components: ['', Validators.required],
-      actuationDate: ['', Validators.required],
       desc: ['', Validators.required],
+      actuationDate: [''],
+      facebook: [''],
+      instagram: [''],
+      youtube: ['']
     });
   }
 
@@ -25,8 +34,8 @@ export class EditorBandaComponent {
     if (this.bandaForm.valid) {
       const formData = this.bandaForm.value;
       console.log('Form Data: ', formData);
-      // Here you can send the formData to your backend server
-      // Your HTTP service logic goes here
+      // Aquí puedes enviar el formData a tu servidor backend
+      // Su lógica de servicio HTTP va aquí
     }
   }
 }
