@@ -43,28 +43,40 @@
   <div class="container">
     <div class="grid">
       <div class="upcoming-performances grid-item">
-        <h1>Upcoming Performances</h1>
+        <h1>Próximas actuaciones</h1>
         <ul>
           <li *ngFor="let performance of upcomingPerformances">
             <h2>{{ performance.title }}</h2>
-            <p>Band: {{ performance.band }}</p>
-            <p>Date: {{ performance.date }}</p>
-            <p>Location: {{ performance.location }}</p>
+            <p>Banda: {{ performance.band }}</p>
+            <p>Fecha: {{ performance.date }}</p>
+            <p>Localización: {{ performance.location }}</p>
           </li>
         </ul>
       </div>
       <div class="filler-text grid-item">
         <h1>Lorem, ipsum dolor.</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum fugiat
-          inventore explicabo.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+          dignissimos dolorem, excepturi magni perspiciatis non odit laboriosam
+          enim odio quaerat, corporis est nostrum ab id.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut aut
+          excepturi, nesciunt ipsum veritatis eaque!
         </p>
       </div>
       <div class="subscribe grid-item">
-        <h1>Subscribe to our newsletter</h1>
+        <h1>Suscríbase a nuestro boletín</h1>
         <form class="subscribe-form">
-          <input type="email" placeholder="Your email" class="email-input" />
-          <button type="submit" class="subscribe-button">Subscribe</button>
+          <input
+            cFormControl
+            type="email"
+            placeholder="Your email"
+            class="email-input"
+          />
+          <button mat-raised-button type="submit" class="subscribe-button">
+            Iniciar sesión
+          </button>
         </form>
       </div>
     </div>

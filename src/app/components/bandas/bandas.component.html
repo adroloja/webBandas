@@ -10,31 +10,33 @@
       <mat-checkbox formControlName="3">Otros</mat-checkbox>
     </div>
     <!--lista de provincias de españa-->
-    <div class="lista-de-provincia">
-      <mat-form-field appearance="fill">
-        <mat-label>Provincia</mat-label>
-        <mat-select
-          formControlName="province"
-          placeholder="Escriba o seleccione una provincia"
-        >
-          <mat-option *ngFor="let province of provinces" [value]="province">{{
-            province
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="componentes">
-      <mat-form-field appearance="fill">
-        <mat-label>Número de componentes</mat-label>
-        <mat-select
-          formControlName="components"
-          placeholder="Seleccione una opción"
-        >
-          <mat-option *ngFor="let num of numComponentes" [value]="num">{{
-            num
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="provynum" style="display: flex">
+      <div class="lista-de-provincia">
+        <mat-form-field appearance="fill">
+          <mat-label>Provincia</mat-label>
+          <mat-select
+            formControlName="province"
+            placeholder="Escriba o seleccione una provincia"
+          >
+            <mat-option *ngFor="let province of provinces" [value]="province">{{
+              province
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="componentes">
+        <mat-form-field appearance="fill">
+          <mat-label>Número de componentes</mat-label>
+          <mat-select
+            formControlName="components"
+            placeholder="Seleccione una opción"
+          >
+            <mat-option *ngFor="let num of numComponentes" [value]="num">{{
+              num
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
     <div class="actuación">
       <mat-form-field appearance="fill">
@@ -50,7 +52,57 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #actuacionFecha></mat-datepicker>
       </mat-form-field>
+      <button type="submit" mat-raised-button class="submit-button">
+        Enviar
+      </button>
     </div>
+
+  </form>
+  <br />
+  <div class="bandas-lista">
+    <div *ngFor="let item of bandaProfil" class="banda-profil">
+      <div
+        [style.background-image]="'url(' + item.image + ')'"
+        class="circular-image"
+      ></div>
+      <div>
+        <h2>{{ item.nombre }}</h2>
+        <p>{{ item.desc }}</p>
+        <div class="grid-profil">
+          <p>Próximas actuaciones: {{ item.nextPer }}</p>
+          <p>Género musical: {{ item.genre }}</p>
+          <p>Fundada: {{ item.fundada }}</p>
+          <div class="social-icons">
+            <p>Redes sociales: </p>
+            <a
+              href="https://www.facebook.com/{{ item.facebook }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <fa-icon [icon]="faFacebook"></fa-icon>
+            </a>
+            <a
+              href="https://www.instagram.com/{{ item.instagram }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <fa-icon [icon]="faInstagram"></fa-icon>
+            </a>
+            <a
+              href="https://www.youtube.com/{{ item.youtube }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <fa-icon [icon]="faYoutube"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--  de aqui  -->
     <button
       type="submit"
       mat-raised-button
@@ -68,5 +120,6 @@
         <a href="#" class="btn btn-primary">Más info</a>
       </div>
     </div> 
+<!--  hasta aqui es lo antiguo aqui  -->
   </div>
 </div>

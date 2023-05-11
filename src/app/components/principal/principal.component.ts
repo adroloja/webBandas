@@ -27,19 +27,19 @@ export class PrincipalComponent implements OnInit {
 
   upcomingPerformances = [
     {
-      title: 'Performance 1',
+      title: 'actuaciones 1',
       band: 'band',
       date: '2023-05-01',
       location: 'Location 1',
     },
     {
-      title: 'Performance 2',
+      title: 'actuaciones 2',
       band: 'band',
       date: '2023-05-15',
       location: 'Location 2',
     },
     {
-      title: 'Performance 3',
+      title: 'actuaciones 3',
       band: 'band',
       date: '2023-05-30',
       location: 'Location 3',

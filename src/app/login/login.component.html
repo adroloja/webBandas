@@ -1,1 +1,63 @@
-<p>login works!</p>
+<div class="login">
+  <div style="display: flex; gap: 2.5rem">
+    <div>
+      <h1>Login</h1>
+      <form class="login-form">
+        <c-input-group class="mb-3">
+          <input
+            for="email"
+            type="email"
+            cFormControl
+            placeholder="Correo electrónico"
+          />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input
+            for="passwd"
+            type="password"
+            cFormControl
+            placeholder="Contraseña"
+          />
+        </c-input-group>
+        <div style="display: flex; flex-direction: column">
+          <mat-checkbox class="mb-3" id="checkMeOut-1"
+            >Acuérdate de mí</mat-checkbox
+          >
+          <button mat-raised-button type="submit">Iniciar sesión</button>
+        </div>
+      </form>
+    </div>
+    <div>
+        <h1>Registro</h1>
+      <form class="login-form">
+        <c-input-group class="mb-3">
+          <input
+            aria-describedby="basic-addon1"
+            aria-label="Username"
+            cFormControl
+            placeholder="Nombre del grupo"
+          />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input
+            aria-describedby="basic-addon2"
+            aria-label="email"
+            cFormControl
+            placeholder="Correo electrónico"
+          />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input
+            for="passwd"
+            type="password"
+            cFormControl
+            placeholder="Contraseña"
+          />
+        </c-input-group>
+        <div style="display: flex; flex-direction: column">
+          <button mat-raised-button type="submit">Iniciar sesión</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
