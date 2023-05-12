@@ -19,7 +19,9 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="componentes">
+    </div>
+    <div class="componentes">
+      <div>
         <mat-form-field appearance="fill">
           <mat-label>Número de componentes</mat-label>
           <mat-select formControlName="components" placeholder="Seleccione una opción">
@@ -41,12 +43,16 @@
         Enviar
       </button>
     </div>
-
   </form>
   <br />
   <div class="bandas-lista">
     <div *ngFor="let item of bandaProfil" class="banda-profil">
-      <div [style.background-image]="'url(' + item.image + ')'" class="circular-image"></div>
+      <div>
+        <div
+          [style.background-image]="'url(' + item.image + ')'"
+          class="circular-image"
+        ></div>
+      </div>
       <div>
         <h2>{{ item.nombre }}</h2>
         <p>{{ item.desc }}</p>
@@ -55,9 +61,13 @@
           <p>Género musical: {{ item.genre }}</p>
           <p>Fundada: {{ item.fundada }}</p>
           <div class="social-icons">
-            <p>Redes sociales: </p>
-            <a href="https://www.facebook.com/{{ item.facebook }}" target="_blank" rel="noopener noreferrer"
-              class="social-icon">
+            <p>Redes sociales:</p>
+            <a
+              href="https://www.facebook.com/{{ item.facebook }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
               <fa-icon [icon]="faFacebook"></fa-icon>
             </a>
             <a href="https://www.instagram.com/{{ item.instagram }}" target="_blank" rel="noopener noreferrer"
@@ -75,6 +85,12 @@
     <!--  de aqui  
       
     <button type="submit" mat-raised-button color="primary" class="submit-button">
+     de aqui  --><!--
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="submit-button"    >
       Enviar
     </button>
     </form>
@@ -87,6 +103,7 @@
           <a href="#" class="btn btn-primary">Más info</a>
         </div>
       </div>
-       hasta aqui es lo antiguo aqui  -->
-    </div>
+    </div> -->
+    <!--  hasta aqui es lo antiguo aqui  -->
   </div>
+</div>

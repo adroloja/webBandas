@@ -4,10 +4,10 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { BandasComponent } from './components/bandas/bandas.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
-import { LoginComponent } from './login/login.component';
-import { PerfilBandaComponent } from './perfil-banda/perfil-banda.component';
-import { EditorBandaComponent } from './editor-banda/editor-banda.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { PerfilBandaComponent } from './components/perfil-banda/perfil-banda.component';
+import { EditorBandaComponent } from './components/editor-banda/editor-banda.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   //! cambiar el tipo de dato "title" para cambiar el título de la pestaña

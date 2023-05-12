@@ -14,7 +14,7 @@ import { MatCommonModule, MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule, MatInput } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -26,11 +26,10 @@ import { BandasComponent } from './components/bandas/bandas.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
-
-import { PerfilBandaComponent } from './perfil-banda/perfil-banda.component';
-import { EditorBandaComponent } from './editor-banda/editor-banda.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { PerfilBandaComponent } from './components/perfil-banda/perfil-banda.component';
+import { EditorBandaComponent } from './components/editor-banda/editor-banda.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
