@@ -11,6 +11,14 @@
 
 .profile-info {
     display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    height: max-content;
+}
+
+.calendar {
+
 }
 
 .profile-pic {

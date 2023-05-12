@@ -2,11 +2,16 @@
   <div class="perfil-banda" *ngFor="let item of bandaProfile">
     <h1>Información</h1>
     <div class="profile-info">
-      <img src="{{ item.img }}" class="profile-pic" />
-      <div class="band-details">
-        <h2>{{ item.name }}</h2>
-        <h3>{{ item.province }}</h3>
-        <h3>{{ item.componentesNum }}</h3>
+      <div style="display: flex; align-items: center;">
+        <img src="{{ item.img }}" class="profile-pic" />
+        <div class="band-details">
+          <h2>{{ item.name }}</h2>
+          <h3>{{ item.province }}</h3>
+          <h3>{{ item.componentesNum }}</h3>
+        </div>
+      </div>
+      <div class="calendar">
+        <mat-calendar [dateClass]="dateClass"></mat-calendar>
       </div>
     </div>
     <div class="multimedia">
