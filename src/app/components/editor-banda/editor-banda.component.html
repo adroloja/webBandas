@@ -1,0 +1,86 @@
+<div class="edit-banda">
+  <h1>Editar información de la banda</h1>
+  <form class="edit-form" [formGroup]="bandaForm" (ngSubmit)="onSubmit()">
+    <div style="width: 100%">
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Band Name</mat-label>
+        <input type="text" matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div style="display: flex; justify-content: space-between; width: 100%">
+      <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select formControlName="province">
+          <mat-option *ngFor="let province of provincias" [value]="province">{{
+            province
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>Número de componentes</mat-label>
+        <mat-select formControlName="components">
+          <mat-option *ngFor="let num of numComponentes" [value]="num">{{
+            num
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="width: 100%">
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="desc"></textarea>
+      </mat-form-field>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      "
+    >
+      <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>Días no disponibles</mat-label>
+        <input
+          matInput
+          [matDatepicker]="actuacionFecha"
+          formControlName="actuationDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="actuacionFecha"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #actuacionFecha></mat-datepicker>
+      </mat-form-field>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 49%;
+        "
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Facebook</mat-label>
+          <input type="text" matInput formControlName="facebook" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Instagram</mat-label>
+          <input type="text" matInput formControlName="instagram" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>YouTube</mat-label>
+          <input type="text" matInput formControlName="youtube" />
+        </mat-form-field>
+      </div>
+    </div>
+    <button
+      mat-raised-button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!bandaForm.valid"
+    >
+      Guardar Cambios
+    </button>
+  </form>
+</div>

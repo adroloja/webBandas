@@ -3,6 +3,7 @@
   <div class="banda-blog">
     <div *ngFor="let item of bandaBlog" class="banda-blog-post">
       <h2>{{ item.title }}</h2>
+      <p>{{ item.band }}</p>
       <p [innerHTML]="item.content"></p>
     </div>
   </div>

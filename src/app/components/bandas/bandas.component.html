@@ -24,7 +24,9 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="componentes">
+    </div>
+    <div class="componentes">
+      <div>
         <mat-form-field appearance="fill">
           <mat-label>Número de componentes</mat-label>
           <mat-select
@@ -56,15 +58,16 @@
         Enviar
       </button>
     </div>
-
   </form>
   <br />
   <div class="bandas-lista">
     <div *ngFor="let item of bandaProfil" class="banda-profil">
-      <div
-        [style.background-image]="'url(' + item.image + ')'"
-        class="circular-image"
-      ></div>
+      <div>
+        <div
+          [style.background-image]="'url(' + item.image + ')'"
+          class="circular-image"
+        ></div>
+      </div>
       <div>
         <h2>{{ item.nombre }}</h2>
         <p>{{ item.desc }}</p>
@@ -73,7 +76,7 @@
           <p>Género musical: {{ item.genre }}</p>
           <p>Fundada: {{ item.fundada }}</p>
           <div class="social-icons">
-            <p>Redes sociales: </p>
+            <p>Redes sociales:</p>
             <a
               href="https://www.facebook.com/{{ item.facebook }}"
               target="_blank"
@@ -102,7 +105,7 @@
         </div>
       </div>
     </div>
-<!--  de aqui  -->
+    <!--  de aqui  --><!--
     <button
       type="submit"
       mat-raised-button
@@ -119,7 +122,7 @@
         <p class="card-text">{{ banda.info }}</p>
         <a href="#" class="btn btn-primary">Más info</a>
       </div>
-    </div> 
-<!--  hasta aqui es lo antiguo aqui  -->
+    </div> -->
+    <!--  hasta aqui es lo antiguo aqui  -->
   </div>
 </div>

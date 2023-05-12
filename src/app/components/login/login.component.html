@@ -28,8 +28,8 @@
       </form>
     </div>
     <div>
-        <h1>Registro</h1>
-      <form class="login-form">
+      <h1>Registro</h1>
+      <form class="login-form grid-form">
         <c-input-group class="mb-3">
           <input
             aria-describedby="basic-addon1"
@@ -54,8 +54,37 @@
             placeholder="Contraseña"
           />
         </c-input-group>
+        <c-input-group class="mb-3">
+          <input
+            for="confirmPasswd"
+            type="password"
+            cFormControl
+            placeholder="Confirmar contraseña"
+          />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="name" cFormControl placeholder="Nombre" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="surname" cFormControl placeholder="Apellido" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="address" cFormControl placeholder="Dirección" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="city" cFormControl placeholder="Ciudad" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="state" cFormControl placeholder="Provincia" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="zip" cFormControl placeholder="Código postal" />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <input for="country" cFormControl placeholder="País" />
+        </c-input-group>
         <div style="display: flex; flex-direction: column">
-          <button mat-raised-button type="submit">Iniciar sesión</button>
+          <button mat-raised-button type="submit">Registrarse</button>
         </div>
       </form>
     </div>
