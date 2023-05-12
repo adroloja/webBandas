@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { GLOBAL } from './GLOBAL';
 
@@ -23,10 +23,17 @@ export class DataBandaService {
   }
 
   inicioSesion(usuario: string, password: string){
-    const json = JSON.stringify({usuario: usuario, password: password});
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    // probar a ver...
-    const params = json;
-    return this.http.post(GLOBAL.urlApi + "usuario/iniciosesion", params, {headers});    
+    let data = new FormData();
+    data.append('usuario', usuario);
+    data.append('password', password);
+  
+    const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+  
+    const options = { headers: headers };
+    const params = new HttpParams().set('usuario', usuario).set('password', password);
+    const body = params.toString();
+  
+    return this.http.post(GLOBAL.urlApi + "usuario/iniciosesion", body, options);
   }
 
   modificarUsuario(id_login: string, usuario: string, password: string, tipo: string){

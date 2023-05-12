@@ -4,6 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { faUser, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { DatosUsuarioService } from './services/datos-usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   //! mira en el app-routing.module.ts para cambiar los títulos de las páginas
   constructor(
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    public datosUsuario: DatosUsuarioService
   ) { }
   ngOnInit() {
     this.router.events

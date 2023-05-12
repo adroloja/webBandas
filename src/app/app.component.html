@@ -4,7 +4,7 @@
   <!--marca y registro/login-->
   <header>
     <a [routerLink]="['/']" class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic" style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
-    <a [routerLink]="['/login']" class="registro"><fa-icon [icon]="faUser"></fa-icon></a>
+    <a [routerLink]="['/login']" class="registro"><fa-icon [icon]="faUser"></fa-icon><span style="margin-left: 5px;">{{ this.datosUsuario.user.correo }}</span></a>
   </header>
   <nav>
     <a [routerLink]="['/']">INICIO</a>
