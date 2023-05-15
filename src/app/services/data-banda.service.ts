@@ -52,10 +52,21 @@ export class DataBandaService {
   =============================================================================================================================
   =============================================================================================================================*/
 
+  getBandaIdLogin(id: string){
+    return this.http.get(GLOBAL.urlApi + 'banda/getbandaidlogin/' + id);
+  }
 
-  getBandas(){   
-    return this.http.get(GLOBAL.urlApi  + "banda/getbandas");
+  getBandas(provincia: string){   
+    return this.http.get(GLOBAL.urlApi  + "banda/get/" + provincia);
 
+  }
+
+  getBandaId(id: string){
+    return this.http.get(GLOBAL.urlApi + "banda/getId/" + id);
+  }
+
+  getBandasFecha(fecha: string){
+    return this.http.get(GLOBAL.urlApi + 'banda/getporfecha/' + fecha);
   }
 
   insertarBanda(datos: any){
@@ -79,6 +90,10 @@ export class DataBandaService {
     return this.http.post(GLOBAL.urlApi + "banda/eliminar", params, {headers});    
   }
 
+  getBandasProvinciaFecha(provincia: string, fecha: string){
+
+    return this.http.get(GLOBAL.urlApi + 'banda/getprovinciafecha/' + provincia + '/' + fecha);
+  }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////                      LINK DE BANDAS                      //////////////////////////////
@@ -124,9 +139,12 @@ export class DataBandaService {
       return this.http.get(GLOBAL.urlApi + 'actuaciones/get');
   }
 
+  getActuacionId(id: string){
+      return this.http.get(GLOBAL.urlApi + 'actuaciones/get/' + id);
+  }
   
-  insertarActuaciones(login_id: string, id_actuaciones: string, fecha: string){          
-    const json = JSON.stringify({login_id: login_id, id_actuaciones: id_actuaciones, fecha: fecha});
+  insertarActuaciones(banda_id: string, fecha: string, login_id: string){          
+    const json = JSON.stringify({id_banda: banda_id, fecha: fecha, login_id: login_id});
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = json;
     return this.http.post(GLOBAL.urlApi + "actuaciones/insertar", params, {headers});    
@@ -144,5 +162,27 @@ export class DataBandaService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = json;
     return this.http.post(GLOBAL.urlApi + "actuaciones/borrar", params, {headers});    
+  }
+
+    /*=============================================================================================================================
+    =============================================================================================================================
+
+                                                        BLOG
+
+  =============================================================================================================================
+  =============================================================================================================================*/
+
+  getBlog(){
+    return this.http.get(GLOBAL.urlApi + 'blog/get');
+  }
+
+  insertarBlog(titulo: string, subtitulo: string, contenido: string){
+    const json = JSON.stringify({titulo: titulo, subtitulo: subtitulo, contenido: contenido});
+    return this.http.post(GLOBAL.urlApi + 'blog/insertar', json);
+  }
+
+  eliminarBlog(id_blog: string){
+
+    return this.http.get(GLOBAL.urlApi + 'blog/eliminar/' + id_blog);
   }
 }

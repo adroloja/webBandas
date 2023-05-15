@@ -6,7 +6,20 @@ import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg
 import { DataBandaService } from 'src/app/services/data-banda.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
+interface Banda {
+
+  image: string,
+  nombre: string,
+  descripcion: string,
+  fundada: "01-01-2023",
+  facebook: '',
+  instagram: '',
+  youtube: '',
+  
+
+}
 
 
 
@@ -16,41 +29,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./bandas.component.css'], 
 })
 export class BandasComponent implements OnInit {
-  bandaProfil = [
-    {
-      image: './assets/img/banner1.jpg',
-      nombre: 'Band1',
-      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
-      nextPer: '12.05.2023',
-      genre: '',
-      fundada: '12.21.2421',
-      facebook: '',
-      instagram: '',
-      youtube: '',
-    },
-    {
-      image: './assets/img/banner1.jpg',
-      nombre: 'Band1',
-      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
-      nextPer: '12.05.2023',
-      genre: '',
-      fundada: '12.21.2421',
-      facebook: '',
-      instagram: '',
-      youtube: '',
-    },
-    {
-      image: './assets/img/banner1.jpg',
-      nombre: 'Band1',
-      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!',
-      nextPer: '12.05.2023',
-      genre: '',
-      fundada: '12.21.2421',
-      facebook: '',
-      instagram: '',
-      youtube: '',
-    },
-  ];
+
+  provinciaSeleccionada: string = '';
+  fecha: Date | null | undefined;
+  fechaFormateada: string = '';
 
   searchForm!: FormGroup;
   provinces = [
@@ -65,6 +47,7 @@ export class BandasComponent implements OnInit {
     'más de 80', 'más de 100'];
 
   bandas: any = [];
+  
 
   constructor(private fb: FormBuilder,
               private dataService: DataBandaService,
@@ -88,13 +71,69 @@ export class BandasComponent implements OnInit {
   faInstagram = faInstagram;
   faYoutube = faYoutube;
 
+  onDateSelected(event: MatDatepickerInputEvent<Date, unknown>) {
+
+ 
+    this.fecha = event.value;
+    if (this.fecha) {
+      //const fechaFormateada = this.fecha.toISOString().slice(0, 10);
+      const fechaActual = new Date();
+      fechaActual.setDate(this.fecha.getDate());
+      this.fechaFormateada = fechaActual.toISOString().slice(0, 10);
+      //console.log(fechaFormateada);
+
+     /*  this.dataService.getBandasFecha(this.fechaFormateada).subscribe(resutl => {
+        let aux: any = resutl;
+        this.bandas = aux.bandas;
+        //console.log(aux.bandas);
+      }); */
+      //
+      //this.fecha_seleccionada = fechaFormateada;
+      //let aux: any[] = this.listaActuaciones;
+      // aux.forEach((objetoN) => {
+      //   const fecha = objetoN.fecha;
+      //   console.log('-- ' + fecha);
+      //   if (fechaFormateada == fecha) {
+       
+      //     //console.log('Fecha igual');
+      //   }
+      // });
+    }
+  }
+
+  onProvinceSelectionChange(event: any){
+
+    this.provinciaSeleccionada = event.value;
+  }
+
   onSubmit(): void {
-    console.log(this.searchForm.value);
-    this.getBandas();
+
+    if(this.provinciaSeleccionada == ''){
+      this.dataService.getBandasFecha(this.fechaFormateada).subscribe(result => {
+        let aux: any = result;
+        this.bandas = aux.bandas;
+      });
+    }
+    if(this.fechaFormateada == ''){
+
+      this.getBandas();
+    }  
+    if(this.fechaFormateada != '' && this.provinciaSeleccionada != ''){
+
+      this.dataService.getBandasProvinciaFecha(this.provinciaSeleccionada, this.fechaFormateada).subscribe(result => {
+
+        let aux: any = result;
+        this.bandas = aux.bandas;
+      });
+    }  
+
+
+    // console.log(this.searchForm.value);
   }
 
   getBandas(){  
-    this.dataService.getBandas().subscribe(result => {
+    console.log(this.provinciaSeleccionada);
+    this.dataService.getBandas(this.provinciaSeleccionada).subscribe(result => {
       console.log(result);
       this.bandas = result;
     }

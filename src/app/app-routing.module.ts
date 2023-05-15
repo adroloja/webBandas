@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent, data: { title: 'CONTACTO' } },
   { path: 'login', component: LoginComponent, data: { title: 'LOGIN' } },
   //! Se trata de plantillas
-  { path: 'templateBanda', component: PerfilBandaComponent, data: { title: 'Temp' } },
-  { path: 'templateEditor', component: EditorBandaComponent, data: { title: 'Temp' } },
+  { path: 'bandaInfo/:id', component: PerfilBandaComponent, data: { title: 'Información sobre la banda' } },
+  { path: 'bandaEditar/:id', component: EditorBandaComponent, data: { title: 'Editar información sobre la banda' } },
   { path: 'templateAdmin', component: AdminComponent, data: { title: 'Temp' } },
 ];
 

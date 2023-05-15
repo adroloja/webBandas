@@ -14,12 +14,16 @@ import { DatosUsuarioService } from './services/datos-usuario.service';
 export class AppComponent {
   // Código para cambiar el título de la página
   //! mira en el app-routing.module.ts para cambiar los títulos de las páginas
+
+  registrado: boolean = false;
+
   constructor(
     private router: Router,
     private titleService: Title,
     public datosUsuario: DatosUsuarioService
   ) { }
   ngOnInit() {
+    this.comprobarUsuario();
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -41,6 +45,27 @@ export class AppComponent {
         }
       });
   }
+
+  getBandaPorId(){
+
+    
+  }
+
+  comprobarUsuario(){
+
+    this.datosUsuario.getUsuario().subscribe(result => {
+
+      if(result != null){
+        this.registrado = true;
+      }
+    });
+  }
+
+  cerrarSesion(){
+    
+    this.registrado = false;
+  }
+
   // iconos
   faUser = faUser;
   faMusic = faMusic;

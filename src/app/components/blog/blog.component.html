@@ -1,10 +1,11 @@
 <div class="blog">
-  <h1>Últimas entradas del blog de Band</h1>
+  <h1>Blog de BuscoBandas</h1>
   <div class="banda-blog">
-    <div *ngFor="let item of bandaBlog" class="banda-blog-post">
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.band }}</p>
-      <p [innerHTML]="item.content"></p>
+    <div *ngFor="let item of blogs" class="banda-blog-post">
+      <h2>{{ item.titulo }}</h2>
+      <p>{{ item.subtitulo }}</p>
+      <p [innerHTML]="item.contenido"></p>
+      <button class="btn btn-danger" *ngIf="this.datosUsuario.user.tipo == '0'" style="width: 200px" (click)="eliminarBlog(item.id_blog)">Eliminar</button>
     </div>
   </div>
 </div>

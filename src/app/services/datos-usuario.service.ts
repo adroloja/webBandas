@@ -6,7 +6,7 @@ interface User {
 
   id: string,
   correo: string,
-  // añadir permiso tipo: string
+  tipo: string
 
 }
 
@@ -17,20 +17,23 @@ export class DatosUsuarioService {
 
   constructor() {  }
 
+  registrado: boolean = false;
   usuario = new BehaviorSubject<any>(null);
   user: User = {
     id: '',
-    correo: ''
+    correo: '',
+    tipo: ''
   }
 
   setUsuario(usuario: any){
 
     this.usuario.next(usuario);
     this.user = usuario;
+    this.registrado = true;
   }
 
   getUsuario(){
 
-    this.usuario.asObservable();
+    return this.usuario.asObservable();
   }
 }

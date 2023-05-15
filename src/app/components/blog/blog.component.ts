@@ -1,22 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataBandaService } from 'src/app/services/data-banda.service';
+import { map } from 'rxjs';
+import { DatosUsuarioService } from 'src/app/services/datos-usuario.service';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
-export class BlogComponent {
-  bandaBlog = [
-    {
-      title: 'Hola',
-      band: 'Hola chicos',
-      content: 'Lamet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam! <br/> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!'
-    }, {
-      title: 'Adios', band: 'Adios chicas',
-      content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam! <br/> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!'
-    }, {
-      title: 'EL TITL', band: 'Serge',
-      content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam! <br/> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis quasi adipisci, aliquid molestias labore quisquam eveniet sapiente at rem aliquam!'
-    }
-  ]
+export class BlogComponent implements OnInit{
+
+  blogs: any = []
+ 
+  constructor(private data: DataBandaService, 
+              public datosUsuario: DatosUsuarioService){ }
+
+
+  ngOnInit() {
+   
+    this.data.getBlog().subscribe(result => {
+
+      this.blogs = result;
+      this.blogs = this.blogs[0].blogs;
+
+    });
+  }
+
+  eliminarBlog(id: string){
+    
+    this.data.eliminarBlog(id).subscribe(result => {
+
+      console.log(result);
+    });
+
+    this.data.getBlog().subscribe(result => {
+
+      this.blogs = result;
+      this.blogs = this.blogs[0].blogs;
+
+    });
+  }
+
+
 }

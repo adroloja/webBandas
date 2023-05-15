@@ -1,53 +1,59 @@
 <div class="bandas">
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search">
     <!--Estilo-->
-    <div class="estilos" formArrayName="styles">
+   <!--  <div class="estilos" formArrayName="styles">
       <mat-checkbox formControlName="0">Banda de cornetas y tambores</mat-checkbox>
       <mat-checkbox formControlName="1">Agrupación musical</mat-checkbox>
       <mat-checkbox formControlName="2">Banda de música</mat-checkbox>
       <mat-checkbox formControlName="3">Otros</mat-checkbox>
-    </div>
+    </div> -->
     <!--lista de provincias de españa-->
     <div class="provynum" style="display: flex">
       <div class="lista-de-provincia">
         <mat-form-field appearance="fill">
           <mat-label>Provincia</mat-label>
-          <mat-select formControlName="province" placeholder="Escriba o seleccione una provincia">
-            <mat-option *ngFor="let province of provinces" [value]="province">{{
+          <mat-select formControlName="province" placeholder="Escriba o seleccione una provincia" (selectionChange)="onProvinceSelectionChange($event)">
+            <mat-option *ngFor="let province of provinces"  [value]="province" >{{
               province
               }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+      <button type="submit" mat-raised-button class="submit-button">
+        Enviar
+      </button>
     </div>
     <div class="componentes">
       <div>
-        <mat-form-field appearance="fill">
+      <!--   <mat-form-field appearance="fill">
           <mat-label>Número de componentes</mat-label>
           <mat-select formControlName="components" placeholder="Seleccione una opción">
             <mat-option *ngFor="let num of numComponentes" [value]="num">{{
               num
               }}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
     </div>
     <div class="actuación">
-      <mat-form-field appearance="fill">
+      <mat-form-field >
+        <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+<!--       <mat-form-field appearance="fill">
         <mat-label>Fecha de la actuación</mat-label>
         <input matInput [matDatepicker]="actuacionFecha" formControlName="actuationDate" />
         <mat-datepicker-toggle matSuffix [for]="actuacionFecha"></mat-datepicker-toggle>
         <mat-datepicker #actuacionFecha></mat-datepicker>
-      </mat-form-field>
-      <button type="submit" mat-raised-button class="submit-button">
-        Enviar
-      </button>
+      </mat-form-field> -->
+   
     </div>
   </form>
   <br />
   <div class="bandas-lista">
-    <div *ngFor="let item of bandaProfil" class="banda-profil">
-      <div>
+    <div *ngFor="let item of bandas" class="banda-profil">
+      <div [routerLink]="['/bandaInfo', item.id_banda]">
         <div
           [style.background-image]="'url(' + item.image + ')'"
           class="circular-image"
@@ -55,11 +61,11 @@
       </div>
       <div>
         <h2>{{ item.nombre }}</h2>
-        <p>{{ item.desc }}</p>
+        <p>{{ item.info }}</p>
         <div class="grid-profil">
           <p>Próximas actuaciones: {{ item.nextPer }}</p>
-          <p>Género musical: {{ item.genre }}</p>
-          <p>Fundada: {{ item.fundada }}</p>
+          <p>Género musical: {{ item.estilo }}</p>
+          <p>Provincia: {{ item.provincia }}</p>
           <div class="social-icons">
             <p>Redes sociales:</p>
             <a
@@ -81,6 +87,7 @@
           </div>
         </div>
       </div>
+    
     </div>
     <!--  de aqui  
       

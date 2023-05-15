@@ -1,29 +1,60 @@
-<div class="perfil-banda-page">
-  <div class="perfil-banda" *ngFor="let item of bandaProfile">
+<div class="perfil-banda-page" *ngIf="!contacto_banda">
+  <div class="perfil-banda">
     <h1>Información</h1>
     <div class="profile-info">
       <div style="display: flex; align-items: center;">
-        <img src="{{ item.img }}" class="profile-pic" />
+        <img src="" class="profile-pic" />
         <div class="band-details">
-          <h2>{{ item.name }}</h2>
-          <h3>{{ item.province }}</h3>
-          <h3>{{ item.componentesNum }}</h3>
+          <h2>{{ banda.nombre }}</h2>
+          <h3>{{ banda.provincia }}</h3>
+          <!--   <h3>{{ item.componentesNum }}</h3> -->
         </div>
       </div>
-      <div class="calendar">
-        <mat-calendar [dateClass]="dateClass"></mat-calendar>
+      <mat-form-field style="position: absolute; right: 400px;">
+        <label for="" style="color: red;" *ngIf="this.fechaOcupada">Fecha ocupada</label>
+        <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <div *ngIf="this.datosUsuario.user.tipo == '0' || this.datosUsuario.user.tipo == '3'">
+        <button class="btn btn-success" (click)="reservarFecha()">Reservar</button>
+        <button class="btn btn-danger" style="margin-left: 7px;" (click)="eliminarFecha()">Eliminar</button>
       </div>
+      <!--  <div class="calendar">
+        <mat-calendar [dateClass]="dateClass" (selectedChanged)="onDateSelected($event)"></mat-calendar>
+      </div> -->
     </div>
-    <div class="multimedia">
-      <h2>Multimedia</h2>
-      <div class="video-container">
+    <div class="multimedia" style="text-align: right;">
+      <button class="btn btn-info" style="width: 300px;" (click)="contactoBanda()">Contactar</button>
+      <!--    <h2>Multimedia</h2>
+     <div class="video-container">
         <video src="{{ item.video1 }}" class="video" controls></video>
         <video src="{{ item.video2 }}" class="video" controls></video>
         <video src="{{ item.video3 }}" class="video" controls></video>
-      </div>
+      </div> -->
     </div>
     <div class="desc">
-      <p [innerHTML]="item.desc"></p>
+      <h2>Información</h2>
+      <p>{{ banda.info }}</p>
+    </div>
+  </div>
+</div>
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet" *ngIf="contacto_banda">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-bottom-0">
+        <h1 class="modal-title fs-5">Contacto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-0">
+        <p>{{ banda.login_usuario }}</p>
+      </div>
+      <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+     <!--    <button type="button" class="btn btn-lg btn-primary">Save changes</button> -->
+        <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal" (click)="cerrarContactoBanda()">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

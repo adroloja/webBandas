@@ -1,11 +1,39 @@
 <!--encabezado de página global-->
+<!-- <header
+  class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-dark" >
+  <div class="col-md-3 mb-2 mb-md-0">
+    <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+      <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+    </a>
+  </div>
 
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li><a href="#" class="nav-link px-2 link-secondary" [routerLink]="['/']">Inicio</a></li>
+    <li><a href="#" class="nav-link px-2" [routerLink]="['/bandas']">Bandas</a></li>
+    <li><a href="#" class="nav-link px-2" [routerLink]="['/blog']">Blog</a></li>
+    <li><a href="#" class="nav-link px-2" [routerLink]="['/contacto']">Contacto</a></li>
+    <li><a href="#" class="nav-link px-2">Privacidad</a></li>
+  </ul>
+
+  <div class="col-md-3 text-end">
+    <button type="button" class="btn btn-outline-primary me-2">Iniciar Sesion</button>
+    <button type="button" class="btn btn-primary">Registrarse</button>
+  </div>
+</header>  -->
 <div class="header-wrapper">
-  <!--marca y registro/login-->
+
   <header>
-    <a [routerLink]="['/']" class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic" style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
-    <a [routerLink]="['/login']" class="registro"><fa-icon [icon]="faUser"></fa-icon><span style="margin-left: 5px;">{{ this.datosUsuario.user.correo }}</span></a>
+    <a [routerLink]="['/']" class="logo"><span style="display: inline-block"><fa-icon [icon]="faMusic"
+          style="font-size: 1.2rem;"></fa-icon>&nbsp;BuscoBandas</span></a>
+    <a [routerLink]="['/login']" class="registro" *ngIf="!this.registrado"><fa-icon [icon]="faUser"></fa-icon></a><span
+      style="margin-left: 5px; color:white" *ngIf="this.registrado">Usuario: {{ this.datosUsuario.user.correo }}
+      <button class="btn btn-secondary" *ngIf="this.datosUsuario.user.tipo == '0' || this.datosUsuario.user.tipo == '3'"
+        style="margin-right: 7px;" [routerLink]="['/bandaEditar', this.datosUsuario.user.id]">Perfil</button>
+      <button class="btn btn-danger" (click)="cerrarSesion()">Cerrar sesión</button></span>
   </header>
+
   <nav>
     <a [routerLink]="['/']">INICIO</a>
     <a [routerLink]="['/bandas']">BANDAS</a>
@@ -22,28 +50,13 @@
   <div class="breadcrumbs">
     <c-breadcrumb-router></c-breadcrumb-router>
     <div class="social-icons">
-      <a
-        href="https://www.facebook.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-icon"
-      >
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
         <fa-icon [icon]="faFacebook"></fa-icon>
       </a>
-      <a
-        href="https://www.instagram.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-icon"
-      >
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
         <fa-icon [icon]="faInstagram"></fa-icon>
       </a>
-      <a
-        href="https://www.youtube.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-icon"
-      >
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
         <fa-icon [icon]="faYoutube"></fa-icon>
       </a>
     </div>

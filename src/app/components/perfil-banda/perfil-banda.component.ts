@@ -1,12 +1,143 @@
-import { Component } from '@angular/core';
-import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { Component, OnInit } from '@angular/core';
+import { MatCalendarCellCssClasses, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { DataBandaService } from 'src/app/services/data-banda.service';
+import { DatosUsuarioService } from 'src/app/services/datos-usuario.service';
 
 @Component({
   selector: 'app-perfil-banda',
   templateUrl: './perfil-banda.component.html',
   styleUrls: ['./perfil-banda.component.css']
 })
-export class PerfilBandaComponent {
+export class PerfilBandaComponent implements OnInit {
+
+  banda: any;
+  listaActuaciones: any;
+  fecha: Date | null | undefined;
+  fechaOcupada: boolean = false;
+  login_id: string = '';
+  id_banda: string = '';
+  fecha_seleccionada: string = '';
+  respuesta_insertar_fecha: any;
+  contacto_banda = false;
+  login_usuario = '';
+
+
+  constructor(private data: DataBandaService,
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    public datosUsuario: DatosUsuarioService) { }
+
+
+  ngOnInit() {
+
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+
+    //console.log("id: " + id);
+    this.id_banda = id;
+    if (id !== '') {
+      this.data.getBandaId(id).subscribe(result => {
+
+        const banda_: any = result;
+        this.banda = banda_[0];
+        console.log(this.banda);
+        this.login_id = this.banda.login_id;
+        this.login_usuario = this.banda.login_usuario;
+        console.log('usuario: ' + this.login_usuario);
+      });
+    }
+
+    this.data.getActuacionId(id).subscribe(result => {
+
+      //console.log(result);
+      this.listaActuaciones = result;
+    });
+  }
+
+  onDateSelected(event: MatDatepickerInputEvent<Date, unknown>) {
+
+    this.fechaOcupada = false;
+    this.fecha = event.value;
+    if (this.fecha) {
+      //const fechaFormateada = this.fecha.toISOString().slice(0, 10);
+      const fechaActual = new Date();
+      fechaActual.setDate(this.fecha.getDate());
+      const fechaFormateada = fechaActual.toISOString().slice(0, 10);
+      //console.log(fechaFormateada);
+      this.fecha_seleccionada = fechaFormateada;
+      let aux: any[] = this.listaActuaciones;
+      aux.forEach((objetoN) => {
+        const fecha = objetoN.fecha;
+        console.log('-- ' + fecha);
+        if (fechaFormateada == fecha) {
+          this.fechaOcupada = true;
+          //console.log('Fecha igual');
+        }
+      });
+    }
+  }
+
+  reservarFecha() {
+
+    if (this.login_id == this.datosUsuario.user.id || this.datosUsuario.user.tipo == '0') {
+      if (this.fecha_seleccionada != '') {
+
+        this.data.insertarActuaciones(this.id_banda, this.fecha_seleccionada, this.login_id).subscribe(result => {
+          this.respuesta_insertar_fecha = result
+          if (this.respuesta_insertar_fecha.respuesta == 'ok') {
+
+            this.openSnackBar("Reserva realizada con éxito", "Ok");
+            this.data.getActuacionId(this.id_banda).subscribe(result => {
+
+              console.log(result);
+              this.listaActuaciones = result;
+              this.fechaOcupada = true;
+            });
+          }
+          //window.location.reload();
+        });
+
+      }
+    }
+  }
+
+  eliminarFecha() {
+
+    if (this.login_id == this.datosUsuario.user.id || this.datosUsuario.user.tipo == '0') {
+      let aux: any[] = this.listaActuaciones;
+      aux.forEach((objetoN) => {
+        const fecha = objetoN.fecha;
+        const id_act = objetoN.id_actuaciones;
+        if (this.fecha_seleccionada == fecha) {
+          this.data.eliminarActuaciones(id_act).subscribe(result => {
+            let aux: any = result;
+            if (aux.respuesta == 'ok') {
+              this.openSnackBar("Reserva eliminada con éxito", "Ok");
+              this.data.getActuacionId(this.id_banda).subscribe(result => {
+
+                console.log(result);
+                this.listaActuaciones = result;
+                this.fechaOcupada = false;
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+
+  contactoBanda(){
+
+    this.contacto_banda = true;
+  }
+
+  cerrarContactoBanda(){
+
+    this.contacto_banda = false;
+  }
+
+
   bandaProfile = [
     {
       img: './assets/img/banner1.jpg',
@@ -34,4 +165,10 @@ export class PerfilBandaComponent {
 
     return blocked ? 'blocked-date' : '';
   };
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2500, // duración del mensaje en milisegundos
+    });
+  }
 }

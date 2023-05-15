@@ -1,63 +1,96 @@
 <div class="login">
   <div style="display: flex; gap: 2.5rem">
-    <div>
-      <h1>Login</h1>
+    <div *ngIf="!tigger">
+      <h1>Iniciar sesión</h1>
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="this.correo_login"
+          [ngModelOptions]="{standalone: true}">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="this.pass_login"
+          [ngModelOptions]="{standalone: true}">
+          <label for="floatingPassword">Password</label>
+        </div>
+     <!--    <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div> -->
+        <button class="w-100 btn btn-lg btn-secondary"  (click)="login()">Iniciar sesión</button>
+        <label (click)="cambio()"><strong>Registrarse</strong></label>
+        <hr class="my-4">
+        <small class="text-body-secondary">Haciendo click en Iniciar sesión, aceptas los términos de uso.</small>
+      </form>
+    
+      <!-- <h1>Login</h1>
       <form class="login-form">
         <c-input-group class="mb-3">
-          <input
-            for="email"
-            type="email"
-            cFormControl
-            placeholder="Correo electrónico"
-          />
+          <input for="email" type="email" cFormControl placeholder="Correo electrónico" [(ngModel)]="this.correo_login"
+            [ngModelOptions]="{standalone: true}" />
         </c-input-group>
         <c-input-group class="mb-3">
-          <input
-            for="passwd"
-            type="password"
-            cFormControl
-            placeholder="Contraseña"
-          />
+          <input for="passwd" type="password" cFormControl placeholder="Contraseña" [(ngModel)]="this.pass_login"
+            [ngModelOptions]="{standalone: true}" />
         </c-input-group>
         <div style="display: flex; flex-direction: column">
-          <mat-checkbox class="mb-3" id="checkMeOut-1"
-            >Acuérdate de mí</mat-checkbox
-          >
-          <button mat-raised-button type="submit">Iniciar sesión</button>
+     
+          <button mat-raised-button (click)="login()">Iniciar sesión</button>
+          <label (click)="cambio()">Registrarse</label>
         </div>
       </form>
+ -->
     </div>
-    <div>
-        <h1>Registro</h1>
-      <form class="login-form">
-        <c-input-group class="mb-3">
-          <input
-            aria-describedby="basic-addon1"
-            aria-label="Username"
-            cFormControl
-            placeholder="Nombre del grupo"
-          />
-        </c-input-group>
-        <c-input-group class="mb-3">
-          <input
-            aria-describedby="basic-addon2"
-            aria-label="email"
-            cFormControl
-            placeholder="Correo electrónico"
-          />
-        </c-input-group>
-        <c-input-group class="mb-3">
-          <input
-            for="passwd"
-            type="password"
-            cFormControl
-            placeholder="Contraseña"
-          />
-        </c-input-group>
-        <div style="display: flex; flex-direction: column">
-          <button mat-raised-button type="submit">Iniciar sesión</button>
+    <div *ngIf="tigger">
+      <h1>Registro</h1>
+      <form class="form-group mt-3" style="display: flex; flex-direction: column;">
+        <!-- <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Nombre del grupo" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="nombre_registro">
+        </div> -->
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="email"
+            aria-describedby="basic-addon2" [(ngModel)]="this.correo_registro" [ngModelOptions]="{standalone: true}">
         </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Contraseña" for="passwd" cFormControl
+            [(ngModel)]="this.pass_registro" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Repita contraseña" for="passwd" cFormControl
+            [(ngModel)]="this.pass_comprobar_registro" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group mb-3">
+          <input type="radio" id="usuario" name="tipoRegistro" value="2" [(ngModel)]="this.tipo_registro">
+          <label for="usuario" style="margin-left: 7px;">Usuario</label>
+          <input type="radio" id="banda" name="tipoRegistro" value="3" [(ngModel)]="this.tipo_registro" style="margin-left: 15px;">
+          <label for="banda" style="margin-left: 7px;">Banda</label>
+
+        </div>
+        <div class="input-group mb-3" *ngIf="this.tipo_registro == '3'">
+          <input type="text" class="form-control" placeholder="Nombre banda"  cFormControl
+            [(ngModel)]="this.nombre_banda" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group mb-3" *ngIf="this.tipo_registro == '3'">
+          <input type="text" class="form-control" placeholder="Estilo banda"  cFormControl
+            [(ngModel)]="this.estilo_banda" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="input-group mb-3" *ngIf="this.tipo_registro == '3'">
+          <mat-form-field appearance="fill">
+            <mat-label>Provincia</mat-label>
+            <mat-select placeholder="Escriba o seleccione una provincia" (selectionChange)="onProvinceSelectionChange($event)">
+              <mat-option *ngFor="let province of provinces"  [value]="province" >{{
+                province
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+         <!--  <input type="text" class="form-control" placeholder="Provincia"  cFormControl
+            [(ngModel)]="this.provincia_banda" [ngModelOptions]="{standalone: true}"> -->
+        </div>
+        <button class="btn btn-secondary" (click)="submit()">Registrarse</button>
       </form>
+
     </div>
+
   </div>
 </div>
