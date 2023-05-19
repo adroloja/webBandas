@@ -1,35 +1,72 @@
 <div class="contacto">
-  <div class="contact-form-container">
-    <h1>Contacto</h1>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <!-- <div class="contact-form-container"> -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+          <h1>Contacto</h1>
+    <form action="" id="form">
+      <br><br>
+      <tr>
+        <td>Nombre</td>
+      </tr>
+      <tr>
+        <input type="text" [(ngModel)]="this.nombre" name="nombre" id="nombre" placeholder="Nombre" style="width: 300px;">
+      </tr>
+      <br>
+      <tr>
+        <td>Email</td>
+      </tr>
+      <tr>
+        <input type="tel" name="email" id="email" placeholder="Email" [(ngModel)]="this.email" style="width: 300px;">
+      </tr>
+      <br>
+      <tr>
+        <td>Asunto</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="asunto" name="asunto" id="asunto" placeholder="Asunto"  [(ngModel)]="this.asunto" style="width: 300px;">
+        </td>
+      </tr><br>
+      <tr>
+        <td>Mensaje</td>
+      </tr>
+      <tr>
+        <textarea name="mensaje" id="mensaje" cols="50" rows="8" [(ngModel)]="this.mensaje"></textarea>
+      </tr>
+      <tr>
+        <td><button type="submit" id="botonEnviar" class="btn btn-primary" (click)="sendEmail()">Enviar</button></td>
+      </tr>
+    </form>
+    <!--  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="f">
       <mat-form-field class="form-field">
         <mat-label>Nombre</mat-label>
-        <input matInput type="text" formControlName="name" />
+        <input matInput type="text" formControlName="nombre" [(ngModel)]="this.nombre" />
       </mat-form-field>
 
       <mat-form-field class="form-field">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
+        <input matInput type="email" formControlName="email" [(ngModel)]="this.email" />
       </mat-form-field>
 
       <mat-form-field class="form-field">
         <mat-label>Asunto</mat-label>
-        <input matInput type="text" formControlName="subject" />
+        <input matInput type="text" formControlName="asunto" [(ngModel)]="this.asunto"/>
       </mat-form-field>
 
       <mat-form-field class="form-field">
         <mat-label>Mensaje</mat-label>
-        <textarea matInput formControlName="message"></textarea>
+        <textarea matInput formControlName="mensaje" [(ngModel)]="this.mensaje"></textarea>
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!contactForm.valid"
-      >
+      <button mat-raised-button color="primary" type="submit" (click)="sendEmail()">
         Enviar
       </button>
-    </form>
+    </form> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("HyKpladI5GmG6G1Mr");
+      })();
+    </script>
   </div>
 </div>

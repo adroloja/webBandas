@@ -3,8 +3,8 @@
   <form class="edit-form" [formGroup]="bandaForm" (ngSubmit)="onSubmit()">
     <div style="width: 100%">
       <mat-form-field style="width: 100%" appearance="fill">
-        <mat-label>Band Name</mat-label>
-        <input type="text" matInput formControlName="name"  [(ngModel)] = "banda.nombre"/>
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="name"  [(ngModel)] = "this.nombre"/>
       </mat-form-field>
     </div>
 <!--     <div style="display: flex; justify-content: space-between; width: 100%">
@@ -28,9 +28,21 @@
     <div style="width: 100%">
       <mat-form-field style="width: 100%" appearance="fill">
         <mat-label>Descripción</mat-label>
-        <textarea matInput formControlName="desc"  [(ngModel)] = "banda.info"></textarea>
+        <textarea matInput formControlName="desc"  [(ngModel)] = "this.info"></textarea>
       </mat-form-field>
     </div>
+<!--     <div style="width: 100%">
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Estilo</mat-label>
+        <textarea matInput formControlName="estilo"  [(ngModel)] = "this.estilo"></textarea>
+      </mat-form-field>
+    </div> -->
+<!--     <div style="width: 100%">
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <textarea matInput formControlName="prov"  [(ngModel)] = "banda.provincia"></textarea>
+      </mat-form-field>
+    </div> -->
     <div
       style="
         display: flex;
@@ -62,15 +74,15 @@
       >
         <mat-form-field appearance="fill">
           <mat-label>Facebook</mat-label>
-          <input type="text" matInput formControlName="facebook" [(ngModel)] = "enlace_facebook" />
+          <input type="text" matInput formControlName="facebook" [(ngModel)] = "this.enlace_facebook" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Instagram</mat-label>
-          <input type="text" matInput formControlName="instagram" [(ngModel)] = "enlace_instagram"/>
+          <input type="text" matInput formControlName="instagram" [(ngModel)] = "this.enlace_instagram"/>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>YouTube</mat-label>
-          <input type="text" matInput formControlName="youtube" [(ngModel)] = "enlace_youtube"/>
+          <input type="text" matInput formControlName="youtube" [(ngModel)] = "this.enlace_youtube"/>
         </mat-form-field>
       </div>
     </div>

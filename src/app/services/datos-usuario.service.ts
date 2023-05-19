@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+ /*========================================================================================================================== 
+    ==========================================================================================================================
+
+                               Interfaz de usuario que usa la aplicación para verificar los datos
+
+   ==========================================================================================================================
+   ==========================================================================================================================*/
 
 interface User {
 
@@ -24,7 +31,7 @@ export class DatosUsuarioService {
     correo: '',
     tipo: ''
   }
-
+  // Funcion que guarda el usuario a traver de un BehaviorSubject (parecido a un Observable)
   setUsuario(usuario: any){
 
     this.usuario.next(usuario);
@@ -32,6 +39,7 @@ export class DatosUsuarioService {
     this.registrado = true;
   }
 
+  // Funcion que lo devuelve
   getUsuario(){
 
     return this.usuario.asObservable();

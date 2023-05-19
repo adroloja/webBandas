@@ -45,11 +45,11 @@
       <div class="upcoming-performances grid-item">
         <h1>Próximas actuaciones</h1>
         <ul>
-          <li *ngFor="let performance of upcomingPerformances">
-            <h2>{{ performance.title }}</h2>
-            <p>Banda: {{ performance.band }}</p>
-            <p>Fecha: {{ performance.date }}</p>
-            <p>Localización: {{ performance.location }}</p>
+          <li *ngFor="let actuacion of actuacionesBandas">
+            <h2>{{ actuacion.nombre }}</h2>
+            <p>Banda: {{ actuacion.nombre }}</p>
+            <p>Fecha: {{ actuacion.fecha }}</p>
+            <p>Localización: {{ actuacion.provincia }}</p>
           </li>
         </ul>
       </div>

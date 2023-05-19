@@ -69,15 +69,15 @@ export class DataBandaService {
     return this.http.get(GLOBAL.urlApi + 'banda/getporfecha/' + fecha);
   }
 
-  insertarBanda(datos: any){
-    const json = JSON.stringify({});
+  insertarBanda(id_banda: string, nombre: string, info: string, estilo: string, provincia: string ){
+    const json = JSON.stringify({login_id: id_banda, nombre: nombre, info: info, provincia: provincia, estilo: estilo});
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    // probar a ver...
     const params = json;
     return this.http.post(GLOBAL.urlApi + "banda/insertar", params, {headers});    
   }
 
-  modificarBanda(datos: any){           //ver como viene los datos  id_banda, nombre, info, estilo, provincia
-    const json = JSON.stringify({});
+  modificarBanda(id_banda: string, nombre: string, info: string){           //ver como viene los datos  id_banda, nombre, info, estilo, provincia
+    const json = JSON.stringify({id_banda: id_banda, nombre: nombre, info: info});
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = json;
     return this.http.post(GLOBAL.urlApi + "banda/modificar", params, {headers});    
@@ -102,18 +102,20 @@ export class DataBandaService {
 
   getLinks(id_login: string){
     
-    return this.http.get(GLOBAL.urlApi + "banda/getlink/" + id_login + "/");    
+    return this.http.get(GLOBAL.urlApi + "banda/getlink/" + id_login);    
   }
 
-  modificarLink(id_link: string){           //ver como viene los datos  id_banda, nombre, info, estilo, provincia
-    const json = JSON.stringify({id_link: id_link});
+  modificarLink(id_link: number, link: string){           
+    const json = JSON.stringify({id_link: id_link, link: link});
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log(json);
     const params = json;
     return this.http.post(GLOBAL.urlApi + "banda/modificarlink", params, {headers});    
   }
 
-  insertarLink(login_id: string, id_link: string, link: string){          // probar que id_link se crea solo
-    const json = JSON.stringify({login_id: login_id, id_link: id_link, link: link});
+  insertarLink(login_id: string, link: string){          // probar que id_link se crea solo
+    const json = JSON.stringify({login_id: login_id, link: link});
+    console.log(json);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });    // probar a ver...
     const params = json;
     return this.http.post(GLOBAL.urlApi + "banda/insertarlink", params, {headers});    

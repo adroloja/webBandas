@@ -1,5 +1,14 @@
 <div class="blog">
+  <button class="btn btn-success"  *ngIf="this.datosUsuario.user.tipo == '0'" style="width: 200px" (click)="activarInsertar()">Insertar</button>
   <h1>Blog de BuscoBandas</h1>
+  <div class="banda-blog">
+    <div class="banda-blog-post" *ngIf="this.insertar">
+      <h2><input type="text" [(ngModel)] ="this.titulo" style="width: 400px"></h2>
+      <p><input type="text" [(ngModel)] ="this.subtitulo" style="width: 400px"></p>
+      <p><textarea name="" id="" cols="140" rows="10"  [(ngModel)] ="this.contenido"></textarea></p>
+      <button class="btn btn-info" *ngIf="this.datosUsuario.user.tipo == '0'" style="width: 200px" (click)="insertarBlog()">Insertar</button>
+    </div>
+  </div>
   <div class="banda-blog">
     <div *ngFor="let item of blogs" class="banda-blog-post">
       <h2>{{ item.titulo }}</h2>
