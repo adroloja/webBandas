@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DataBandaService } from 'src/app/services/data-banda.service';
+
+
+interface Actuaciones {
+    login_id: string;
+    fecha: string;
+    provincia: string;
+    nombre: string;
+
+}
 
 @Component({
   selector: 'app-principal',
@@ -7,6 +17,19 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
+
+
+  actuaciones: any;
+  actuacionesBandas: Actuaciones[] = [];
+
+   /*========================================================================================================================== 
+    ==========================================================================================================================
+
+                                     Cabecera de actuaciones y demás del inicio
+
+   ==========================================================================================================================
+   ==========================================================================================================================*/
+
   // Para añadir más banners, edita el número en el "Array(x)".
   slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
 
@@ -46,7 +69,7 @@ export class PrincipalComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private data: DataBandaService) { }
 
   /*
     this.slides[x] = {
@@ -58,6 +81,35 @@ export class PrincipalComponent implements OnInit {
   */
 
   ngOnInit(): void {
+    // Codigo que muestra la proximas actuaciones
+    this.data.getActuaciones().subscribe(result => {
+      //console.log(result);
+      this.actuaciones = result;
+      let aux: any[] = this.actuaciones;
+      //this.actuaciones = [];
+        aux.forEach(n => {
+      //console.log(n.login_id);
+      this.data.getBandaId(n.login_id).subscribe(result => {
+        //console.log(result);
+        let temp: any = result;
+        console.log(temp[0].nombre);
+        // console.log("aux2");
+        // console.log(aux2);
+       let banda: Actuaciones = {
+          login_id: n.login_id,
+          nombre: temp[0].nombre,
+          fecha: n.fecha,
+          provincia: temp[0].provincia
+        }
+        console.log(banda)
+        this.actuacionesBandas.push(banda); 
+      });
+
+    });
+    //console.log(this.actuacionesBandas);
+    })
+
+
     this.slides[0] = {
       id: 0,
       src: './assets/img/banner1.jpg',
